@@ -19,7 +19,7 @@ pipeline {
             steps {
                 echo 'building the application...'
                 sh 'ls'
-                sh 'cd jenkins-ci-demo/Cart/cmd/server'
+                sh 'cd Cart/cmd/server'
                 sh 'pwd'
                 sh 'go build .'
             }
