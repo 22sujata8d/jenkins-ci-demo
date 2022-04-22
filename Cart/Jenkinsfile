@@ -19,9 +19,10 @@ pipeline {
             steps {
                 echo 'building the application...'
                 sh 'ls'
-                sh 'cd Cart/cmd/server'
+                sh 'cd Cart'
                 sh 'pwd'
                 sh 'go mod tidy'
+                sh 'cd cmd/server'
                 sh 'go build .'
             }
         }
