@@ -12,6 +12,7 @@ pipeline {
 
             steps {
                 echo 'building the application...'
+                echo "${pwd}"
                 sh 'cd cmd/server'
                 sh 'go build .'
             }
