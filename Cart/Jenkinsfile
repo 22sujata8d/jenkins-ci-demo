@@ -21,6 +21,7 @@ pipeline {
                 sh 'ls'
                 sh 'cd Cart/cmd/server'
                 sh 'pwd'
+                sh 'go mod tidy'
                 sh 'go build .'
             }
         }
