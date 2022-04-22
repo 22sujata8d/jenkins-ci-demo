@@ -19,12 +19,15 @@ pipeline {
             steps {
                 echo 'building the application...'
                 sh 'ls'
-                sh 'cd Cart'
-                sh 'pwd'
-                sh 'go mod init github.com/swiggy-2022-bootcamp/cdp-team2/cart'
-                sh 'go mod tidy'
-                sh 'cd cmd/server'
-                sh 'go build .'
+                sh script:'''
+                    #!/bin/bash
+                    cd ./Cart
+                    pwd
+                    go mod init github.com/swiggy-2022-bootcamp/cdp-team2/cart
+                    go mod tidy
+                    cd ./cmd/server
+                    go build .
+                '''
             }
         }
 
