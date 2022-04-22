@@ -34,7 +34,10 @@ pipeline {
 
             steps {
                 echo 'testing the application...'
-                sh 'go test -v ./...'
+                sh script:'''
+                    cd ../..
+                    go test -v ./...
+                '''
             }
         }
 
