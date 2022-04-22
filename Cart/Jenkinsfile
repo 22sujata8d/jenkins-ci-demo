@@ -36,6 +36,7 @@ pipeline {
                 echo 'testing the application...'
                 sh script:'''
                     pwd
+                    cd ./Cart
                     go test -v ./...
                 '''
             }
