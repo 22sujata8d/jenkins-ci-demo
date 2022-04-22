@@ -8,6 +8,7 @@ pipeline {
 
             steps {
                 echo 'building the application...'
+                go build .
             }
         }
 
@@ -15,6 +16,7 @@ pipeline {
 
             steps {
                 echo 'testing the application...'
+                go test -v ./...
             }
         }
 
