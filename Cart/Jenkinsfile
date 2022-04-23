@@ -8,6 +8,7 @@ pipeline {
 
     environment {
 		DOCKERHUB_CREDENTIALS=credentials('docker-hub')
+        PATH = "$PATH:/usr/local/bin"
 	}
     
     stages {
@@ -46,10 +47,11 @@ pipeline {
             }
         }
 
-        stage('Login') {
+        stage('Testing') {
 
 			steps {
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                sh 'docker --version'
+				//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
@@ -57,7 +59,7 @@ pipeline {
 
             steps {
                 echo 'deploying the application...'
-                sh 'docker push sujata/cart-ms:latest'
+                //sh 'docker push sujata/cart-ms:latest'
             }
         }
     }
