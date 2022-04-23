@@ -50,7 +50,11 @@ pipeline {
         stage("image build") {
 
 			steps {
-				sh 'docker build -t cart/1.0.0:latest .'
+				sh script:'''
+                    pwd
+                    cd ./Cart
+                    docker build -t cart/1.0.0:latest .
+                '''
 			}
 		}
 
