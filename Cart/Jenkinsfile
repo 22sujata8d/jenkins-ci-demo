@@ -47,7 +47,14 @@ pipeline {
             }
         }
 
-        stage('Testing') {
+        stage("image build") {
+
+			steps {
+				sh 'docker build -t cart/1.0.0:latest .'
+			}
+		}
+
+        stage("docker login") {
 
 			steps {
                 sh 'docker --version'
