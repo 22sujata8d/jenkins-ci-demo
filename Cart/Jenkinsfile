@@ -13,7 +13,7 @@ pipeline {
     
     stages {
 
-        stage ('Clone') {
+        stage ("clone") {
             steps {
                 git branch: 'main', url: "https://github.com/22sujata8d/jenkins-ci-demo.git"
             }
@@ -50,6 +50,7 @@ pipeline {
         stage("image build") {
 
 			steps {
+                echo 'building the docker image...'
 				sh script:'''
                     pwd
                     cd ./Cart
@@ -61,17 +62,17 @@ pipeline {
         stage("docker login") {
 
 			steps {
+                echo 'loging into docker...'
                 sh 'docker --version'
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
-        stage("deploy") {
+        stage("push image to dockerhub") {
 
             steps {
                 sh 'docker --version'
-				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-                echo 'deploying the application...'
+                echo 'pushing the image to docker hub...'
                 sh 'docker push zen08/cart:latest'
             }
         }
