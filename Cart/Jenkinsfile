@@ -60,11 +60,11 @@ pipeline {
                 sh 'docker push sujata/cart-ms:latest'
             }
         }
-
-        post {
-		    always {
-			    sh 'docker logout'
-		    }
-	    }
     }
+
+    post {
+		always {
+		    sh 'docker logout'
+		}
+	}
 }
