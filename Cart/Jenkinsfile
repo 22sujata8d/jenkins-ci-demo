@@ -53,7 +53,7 @@ pipeline {
 				sh script:'''
                     pwd
                     cd ./Cart
-                    docker build -t cart/1.0.0:latest .
+                    docker build -t zen08/cart:latest .
                 '''
 			}
 		}
@@ -69,8 +69,10 @@ pipeline {
         stage("deploy") {
 
             steps {
+                sh 'docker --version'
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                 echo 'deploying the application...'
-                sh 'docker push cart/1.0.0:latest'
+                sh 'docker push zen08/cart:latest'
             }
         }
     }
