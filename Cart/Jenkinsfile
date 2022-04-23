@@ -5,6 +5,10 @@ pipeline {
     tools {
         go '1.18.1'
     }
+
+    environment {
+		DOCKERHUB_CREDENTIALS=credentials('docker-hub')
+	}
     
     stages {
 
@@ -42,11 +46,25 @@ pipeline {
             }
         }
 
+        stage('Login') {
+
+			steps {
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+			}
+		}
+
         stage("deploy") {
 
             steps {
                 echo 'deploying the application...'
+                sh 'docker push sujata/cart-ms:latest'
             }
         }
+
+        post {
+		    always {
+			    sh 'docker logout'
+		    }
+	    }
     }
 }
