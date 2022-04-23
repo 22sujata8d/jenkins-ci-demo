@@ -51,7 +51,7 @@ pipeline {
 
 			steps {
                 sh 'docker --version'
-				//sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
 
@@ -59,7 +59,7 @@ pipeline {
 
             steps {
                 echo 'deploying the application...'
-                //sh 'docker push sujata/cart-ms:latest'
+                sh 'docker push cart/1.0.0:latest'
             }
         }
     }
