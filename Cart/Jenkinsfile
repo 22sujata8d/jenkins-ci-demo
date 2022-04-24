@@ -54,7 +54,7 @@ pipeline {
 				sh script:'''
                     pwd
                     cd ./Cart
-                    docker build -t zen08/cart:latest .
+                    docker build -t swiggyteam2/cart:latest .
                 '''
 			}
 		}
@@ -73,7 +73,7 @@ pipeline {
             steps {
                 sh 'docker --version'
                 echo 'pushing the image to docker hub...'
-                sh 'docker push zen08/cart:latest'
+                sh 'docker push swiggyteam2/cart:latest'
             }
         }
     }
@@ -81,6 +81,9 @@ pipeline {
     post {
 		always {
 		    sh 'docker logout'
+            mail to: 'sujata8dwivedi@gmail.com',
+            subject: "Status of pipeline: ${currentBuild.fullDisplayName}",
+            body: "${env.BUILD_URL} has result ${currentBuild.result}"
 		}
 	}
 }
